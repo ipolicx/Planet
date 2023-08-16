@@ -387,11 +387,11 @@ extension MyArticleSettingsView {
                             errors = errors + 1
 
                             let alert = NSAlert()
-                            alert.messageText = "Article Slug Issue"
+                            alert.messageText = "Article Slug Issue".localized
                             alert.informativeText =
-                                "The slug is already used by \(article.title) (ID: \(article.id)). Please choose a different slug."
+                            "\("The slug is already used by".localized) \(article.title) (ID: \(article.id)). \("Please choose a different slug".localized)."
                             alert.alertStyle = .informational
-                            alert.addButton(withTitle: "OK")
+                            alert.addButton(withTitle: "OK".localized)
                             alert.runModal()
                             break
                         }
