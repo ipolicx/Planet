@@ -10,9 +10,9 @@ import WrappingHStack
 
 struct MyArticleSettingsView: View {
     let MESSAGE_SLUG_REQUIREMENT =
-        "The slug is the part of the URL that identifies the article. It should be unique and contain only lowercased letters, numbers, and hyphens."
+    "The slug is the part of the URL that identifies the article. It should be unique and contain only lowercased letters, numbers, and hyphens.".localized
     let MESSAGE_EXTERNAL_LINK =
-        "If you want this article to redirect to an external link, enter the URL here."
+    "If you want this article to redirect to an external link, enter the URL here.".localized
 
     let CONTROL_CAPTION_WIDTH: CGFloat = 80
 

@@ -123,7 +123,7 @@ class PlanetPublishedServiceStore: ObservableObject {
     
     func updateWindowTitles() {
         var titles: [String: String] = [
-            "title": "Published Folders Dashboard",
+            "title": "Published Folders Dashboard".localized,
             "subtitle": ""
         ]
         if let id = selectedFolderID, let folder = publishedFolders.first(where: { $0.id == id }) {

@@ -91,7 +91,7 @@ class TBWindowController: NSWindowController {
 
     private func updateTemplateWindowTitles() {
         guard let templateID = TemplateStore.shared.selectedTemplateID, let template = TemplateStore.shared.templates.first(where: { $0.id == templateID }) else {
-            self.window?.title = "Template Browser"
+            self.window?.title = "Template Browser".localized
             self.window?.subtitle = ""
             return
         }

@@ -85,7 +85,7 @@ struct PlanetSidebarView: View {
                 Circle()
                     .frame(width: 11, height: 11, alignment: .center)
                     .foregroundColor(ipfsState.online ? Color.green : Color.red)
-                Text(ipfsState.online ? "Online (\(ipfsState.peers))" : "Offline")
+                Text(ipfsState.online ? "\("Online".localized) (\(ipfsState.peers))" : "Offline")
                     .font(.body)
 
                 Spacer()
