@@ -157,6 +157,10 @@ struct AccountBadgeView: View {
                                 avatarImage = image
                             }
                         }
+                    } else {
+                        DispatchQueue.main.async {
+                            avatarImage = NSImage(named: WalletManager.shared.getWalletAppImageName()!)
+                        }
                     }
                 }
             }

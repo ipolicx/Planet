@@ -35,7 +35,7 @@ class PlanetKeyManagerWindowController: NSWindowController {
         toolbar.allowsUserCustomization = false
         toolbar.autosavesConfiguration = false
         toolbar.displayMode = .iconOnly
-        w.title = "Key Manager"
+        w.title = "Key Manager".localized
         w.toolbar = toolbar
         w.toolbarStyle = .unified
         w.toolbar?.validateVisibleItems()
@@ -74,8 +74,8 @@ class PlanetKeyManagerWindowController: NSWindowController {
             throw PlanetError.KeyManagerImportingKeyExistsError
         } else {
             let panel = NSOpenPanel()
-            panel.message = "Choose key file to import"
-            panel.prompt = "Choose"
+            panel.message = "Choose key file to import".localized
+            panel.prompt = "Choose".localized
             panel.allowsMultipleSelection = false
             panel.allowedContentTypes = [.data]
             panel.canChooseDirectories = false
@@ -90,8 +90,8 @@ class PlanetKeyManagerWindowController: NSWindowController {
     private func exportForSelectedKeyItem() throws {
         guard let selectedKeyItemID = PlanetKeyManagerViewModel.shared.selectedKeyItemID, let keyItem = PlanetKeyManagerViewModel.shared.keys.first(where: { $0.id == selectedKeyItemID }) else { throw PlanetError.KeyManagerImportingKeyError }
         let panel = NSOpenPanel()
-        panel.message = "Choose location to save planet key"
-        panel.prompt = "Choose"
+        panel.message = "Choose location to save planet key".localized
+        panel.prompt = "Choose".localized
         panel.allowsMultipleSelection = false
         panel.allowedContentTypes = [.folder]
         panel.canChooseDirectories = true
@@ -197,10 +197,10 @@ extension PlanetKeyManagerWindowController: NSToolbarDelegate {
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.target = self
             item.action = #selector(self.toolbarItemAction(_:))
-            item.label = "Reload"
-            item.title = "Reload"
-            item.paletteLabel = "Reload Planet Keys"
-            item.toolTip = "Reload Planet Keys"
+            item.label = "Reload".localized
+            item.title = "Reload".localized
+            item.paletteLabel = "Reload Planet Keys".localized
+            item.toolTip = "Reload Planet Keys".localized
             item.isBordered = true
             item.image = NSImage(systemSymbolName: "arrow.clockwise", accessibilityDescription: "Reload Planet Keys")
             return item
@@ -208,10 +208,10 @@ extension PlanetKeyManagerWindowController: NSToolbarDelegate {
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.target = self
             item.action = #selector(self.toolbarItemAction(_:))
-            item.label = "Sync"
-            item.title = "Sync"
-            item.paletteLabel = "Sync with Keychain"
-            item.toolTip = "Sync with Keychain"
+            item.label = "Sync".localized
+            item.title = "Sync".localized
+            item.paletteLabel = "Sync with Keychain".localized
+            item.toolTip = "Sync with Keychain".localized
             item.isBordered = true
             item.image = NSImage(systemSymbolName: "key.icloud", accessibilityDescription: "Sync with Keychain")
             return item
@@ -219,10 +219,10 @@ extension PlanetKeyManagerWindowController: NSToolbarDelegate {
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.target = self
             item.action = #selector(self.toolbarItemAction(_:))
-            item.label = "Import"
-            item.title = "Import"
-            item.paletteLabel = "Import Planet Key"
-            item.toolTip = "Import Planet Key"
+            item.label = "Import".localized
+            item.title = "Import".localized
+            item.paletteLabel = "Import Planet Key".localized
+            item.toolTip = "Import Planet Key".localized
             item.isBordered = true
             item.image = NSImage(systemSymbolName: "arrow.down.doc", accessibilityDescription: "Import Planet Key")
             return item
@@ -230,10 +230,10 @@ extension PlanetKeyManagerWindowController: NSToolbarDelegate {
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.target = self
             item.action = #selector(self.toolbarItemAction(_:))
-            item.label = "Export"
-            item.title = "Export"
-            item.paletteLabel = "Export Planet Key"
-            item.toolTip = "Export Planet Key"
+            item.label = "Export".localized
+            item.title = "Export".localized
+            item.paletteLabel = "Export Planet Key".localized
+            item.toolTip = "Export Planet Key".localized
             item.isBordered = true
             item.image = NSImage(systemSymbolName: "arrow.up.doc", accessibilityDescription: "Export Planet Key")
             return item

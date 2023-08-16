@@ -25,3 +25,7 @@ struct PlanetUI {
     static let WINDOW_CONTENT_WIDTH_MIN: CGFloat = 400
     static let WINDOW_CONTENT_HEIGHT_MIN: CGFloat = 400
 }
+
+extension String {
+    var localized: String { return NSLocalizedString(self, comment: self) }
+}

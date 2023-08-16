@@ -1700,7 +1700,7 @@ class FollowingPlanetModel: Equatable, Hashable, Identifiable, ObservableObject,
         }
         else {
             let unread = articles.filter { $0.read == nil }.count
-            return "\(unread) unread · \(articles.count) total"
+            return "\(unread) \("unread".localized) · \(articles.count) \("total".localized)"
         }
     }
 

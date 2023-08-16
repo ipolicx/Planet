@@ -1815,7 +1815,7 @@ extension MyPlanetModel {
     func navigationSubtitle() -> String {
         if articles.count > 0 {
             if articles.count > 1 {
-                return "\(articles.count) articles"
+                return "\(articles.count) \("articles".localized)"
             }
             else {
                 return "1 article"

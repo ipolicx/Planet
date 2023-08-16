@@ -27,7 +27,7 @@ struct WriterTitleView: View {
                         .textFieldStyle(PlainTextFieldStyle())
                         .focused($focusTitle, equals: titleIsFocused)
                 } else {
-                    CLTextFieldView(text: $title, placeholder: "Title")
+                    CLTextFieldView(text: $title, placeholder: "Title".localized)
                 }
             }
             .frame(height: 34, alignment: .leading)

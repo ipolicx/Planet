@@ -232,8 +232,8 @@ class KeyboardShortcutHelper: ObservableObject {
     
     func importPlanetAction() {
         let panel = NSOpenPanel()
-        panel.message = "Choose Planet Data"
-        panel.prompt = "Import"
+        panel.message = "Choose Planet Data".localized
+        panel.prompt = "Import".localized
         panel.allowsMultipleSelection = false
         let planetDataIdentifier = {
             if let name = Bundle.main.object(forInfoDictionaryKey: "ORGANIZATION_IDENTIFIER_PREFIX") as? String {

@@ -39,7 +39,7 @@ struct SharingServicePicker: NSViewRepresentable {
                 return proposedServices
             }
             var share = proposedServices
-            let copyService = NSSharingService(title: "Copy Link", image: image, alternateImage: image) {
+            let copyService = NSSharingService(title: "Copy Link".localized, image: image, alternateImage: image) {
                 if let item = items.first as? URL {
                     NSPasteboard.general.clearContents()
                     NSPasteboard.general.setString(item.absoluteString, forType: .string)

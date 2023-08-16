@@ -150,8 +150,8 @@ struct PlanetSettingsGeneralView: View {
     
     private func updateLibraryLocation() throws {
         let panel = NSOpenPanel()
-        panel.message = "Choose Library Location"
-        panel.prompt = "Choose"
+        panel.message = "Choose Library Location".localized
+        panel.prompt = "Choose".localized
         panel.allowsMultipleSelection = false
         panel.allowedContentTypes = [.folder]
         panel.canChooseDirectories = true
@@ -167,11 +167,11 @@ struct PlanetSettingsGeneralView: View {
         // prompt to user when existing planet library location found:
         if useAsExistingLibraryLocation {
             let alert = NSAlert()
-            alert.messageText = "Existing Planet Library Found"
+            alert.messageText = "Existing Planet Library Found".localized
             alert.alertStyle = .warning
-            alert.informativeText = "Would you like to use new library location at: \(url.path), current database including following planets will be replaced with contents at this location."
-            alert.addButton(withTitle: "Cancel")
-            alert.addButton(withTitle: "Continue & Update")
+            alert.informativeText = "\("Would you like to use new library location at".localized): \(url.path), \("current database including following planets will be replaced with contents at this location".localized)."
+            alert.addButton(withTitle: "Cancel".localized)
+            alert.addButton(withTitle: "Continue & Update".localized)
             let result = alert.runModal()
             if result == .alertFirstButtonReturn {
                 return

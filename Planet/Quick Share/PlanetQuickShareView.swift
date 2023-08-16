@@ -175,8 +175,8 @@ struct PlanetQuickShareView: View {
 
     private func addAttachmentsAction() {
         let panel = NSOpenPanel()
-        panel.message = "Choose attachments to publish"
-        panel.prompt = "Choose"
+        panel.message = "Choose attachments to publish".localized
+        panel.prompt = "Choose".localized
         panel.allowsMultipleSelection = true
         panel.allowedContentTypes = [.image]
         panel.canChooseDirectories = false

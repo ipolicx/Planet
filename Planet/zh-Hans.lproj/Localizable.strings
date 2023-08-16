@@ -25,6 +25,7 @@
 "Today" = "今天";
 "Unread" = "未读";
 "Starred" = "标记";
+"starred" = "标记";
 "My Planets" = "我的行星";
 "Following Planets" = "关注的行星";
 "Offline" = "离线";
@@ -113,6 +114,7 @@
 "Reload" = "重新加载";
 "Reload Planet Keys" = "重新加载行星钥匙";
 "Import" = "导入";
+"import" = "导入";
 "Import Planet Key" = "导入行星钥匙";
 "Export" = "导出";
 "Export Planet Key" = "导出行星钥匙";
@@ -271,8 +273,6 @@
 "Are you sure you want to disconnect?" = "您确定要断开连接吗?";
 "Share" = "分享";
 "Delete" = "删除";
-
-
 "Edit" = "编辑";
 "Title" = "标题";
 "External Link" = "外部链接";
@@ -308,6 +308,8 @@
 "Archive" = "归档";
 "Open in WorldWideWeb Server" = "在万维网服务器中打开";
 "Rebuild" = "重建";
+"Rebuilding" = "重建中";
+"items done" = "完成的项目";
 "Check with Pinnable" = "检查可固定";
 "Export Planet" = "导出行星";
 "Publish Planet" = "发布行星";

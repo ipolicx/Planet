@@ -524,8 +524,8 @@ extension PlanetPublishedServiceStore {
     
     func addFolder() {
         let panel = NSOpenPanel()
-        panel.message = "Choose Folder to Publish"
-        panel.prompt = "Choose"
+        panel.message = "Choose Folder to Publish".localized
+        panel.prompt = "Choose".localized
         panel.allowsMultipleSelection = false
         panel.allowedContentTypes = [.folder]
         panel.canChooseDirectories = true
@@ -579,8 +579,8 @@ extension PlanetPublishedServiceStore {
             return
         }
         let panel = NSOpenPanel()
-        panel.message = "Choose Directory to Save Folder Key"
-        panel.prompt = "Choose"
+        panel.message = "Choose Directory to Save Folder Key".localized
+        panel.prompt = "Choose".localized
         panel.allowsMultipleSelection = false
         panel.allowedContentTypes = [.folder]
         panel.canChooseDirectories = true

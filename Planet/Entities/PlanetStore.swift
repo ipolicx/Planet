@@ -343,21 +343,21 @@ enum PlanetDetailViewType: Hashable, Equatable {
         switch selectedView {
         case .today:
             selectedArticleList = getTodayArticles()
-            navigationTitle = "Today"
+            navigationTitle = "Today".localized
             if let articles = selectedArticleList {
-                navigationSubtitle = "\(articles.count) fetched today"
+                navigationSubtitle = "\(articles.count) \("fetched today".localized)"
             }
         case .unread:
             selectedArticleList = getUnreadArticles()
-            navigationTitle = "Unread"
+            navigationTitle = "Unread".localized
             if let articles = selectedArticleList {
-                navigationSubtitle = "\(articles.count) unread"
+                navigationSubtitle = "\(articles.count) \("unread".localized)"
             }
         case .starred:
             selectedArticleList = getStarredArticles()
-            navigationTitle = "Starred"
+            navigationTitle = "Starred".localized
             if let articles = selectedArticleList {
-                navigationSubtitle = "\(articles.count) starred"
+                navigationSubtitle = "\(articles.count) \("starred".localized)"
             }
         case .myPlanet(let planet):
             selectedArticleList = planet.articles
@@ -369,7 +369,7 @@ enum PlanetDetailViewType: Hashable, Equatable {
             navigationSubtitle = planet.navigationSubtitle()
         case .none:
             selectedArticleList = nil
-            navigationTitle = "Planet"
+            navigationTitle = "Planet".localized
             navigationSubtitle = ""
         }
     }

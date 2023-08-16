@@ -19,27 +19,27 @@ enum ListViewFilter: String, CaseIterable {
     case paperplane = "Paperplane"
 
     static let buttonLabels: [String: String] = [
-        "All": "Show All",
-        "Pages": "Show Pages",
-        "Navigation Items": "Show Navigation Items",
-        "Unread": "Show Unread",
-        "Starred": "Show All Starred",
+        "All": "Show All".localized,
+        "Pages": "Show Pages".localized,
+        "Navigation Items": "Show Navigation Items".localized,
+        "Unread": "Show Unread".localized,
+        "Starred": "Show All Starred".localized,
     ]
 
     static let emptyLabels: [String: String] = [
-        "All": "No Articles",
-        "Pages": "No Pages",
-        "Navigation Items": "No Navigation Items",
-        "Unread": "No Unread Articles",
-        "Starred": "No Starred Articles",
-        "Star": "No Starred Articles",
-        "Plan": "No Items with Plan Type",
-        "To Do": "No Items with To Do Type",
-        "Done": "No Items with Done Type",
-        "Sparkles": "No Items with Sparkles Type",
-        "Heart": "No Items with Heart Type",
-        "Question": "No Items with Question Type",
-        "Paperplane": "No Items with Paperplane Type",
+        "All": "No Articles".localized,
+        "Pages": "No Pages".localized,
+        "Navigation Items": "No Navigation Items".localized,
+        "Unread": "No Unread Articles".localized,
+        "Starred": "No Starred Articles".localized,
+        "Star": "No Starred Articles".localized,
+        "Plan": "No Items with Plan Type".localized,
+        "To Do": "No Items with To Do Type".localized,
+        "Done": "No Items with Done Type".localized,
+        "Sparkles": "No Items with Sparkles Type".localized,
+        "Heart": "No Items with Heart Type".localized,
+        "Question": "No Items with Question Type".localized,
+        "Paperplane": "No Items with Paperplane Type".localized,
     ]
 
     static let imageNames: [String: String] = [

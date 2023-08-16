@@ -108,8 +108,8 @@ struct MyPlanetInfoView: View {
 
     func lastPublishedText() -> String {
         if let published = planet.lastPublished {
-            return "Published " + published.relativeDateDescription()
+            return ("Published".localized) + published.relativeDateDescription()
         }
-        return "Never Published"
+        return "Never Published".localized
     }
 }
