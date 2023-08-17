@@ -72,15 +72,15 @@ struct PFDashboardInspectorView: View {
                 
                 Divider()
                 
-                sectionInformationView(name: "Last Published", content: folder.published?.dateDescription() ?? "Never")
+                sectionInformationView(name: "Last Published".localized, content: folder.published?.dateDescription() ?? "Never".localized)
                 
             } header: {
-                sectionHeaderView(name: "General")
+                sectionHeaderView(name: "General".localized)
             }
             
             Section {
                 ZStack {
-                    sectionInformationView(name: "CID", content: serviceStore.loadPublishedFolderCID(byFolderID: folder.id) ?? "")
+                    sectionInformationView(name: "CID".localized, content: serviceStore.loadPublishedFolderCID(byFolderID: folder.id) ?? "")
                     VStack {
                         HStack {
                             Spacer()
@@ -96,7 +96,7 @@ struct PFDashboardInspectorView: View {
                                         .frame(width: 11, height: 11)
                                 }
                                 .buttonStyle(.plain)
-                                .help("Copy Folder CID")
+                                .help("Copy Folder CID".localized)
                             }
                         }
                         .padding(.horizontal, 8)
@@ -144,7 +144,7 @@ struct PFDashboardInspectorView: View {
                     self.isHoveringInIPNSSection = hovering
                 }
             } header: {
-                sectionHeaderView(name: "Advanced")
+                sectionHeaderView(name: "Advanced".localized)
             }
         }
     }

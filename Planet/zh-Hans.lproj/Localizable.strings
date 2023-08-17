@@ -7,25 +7,25 @@
 "Planet" = "行星";
 
 //顶部工具栏
-"Writer" = "作家";
+"Writer" = "作者";
 "Tools" = "工具";
-"Template Browser" = "模板的浏览器";
-"Downloads" = "下载管理器";
+"Template Browser" = "模板浏览器";
+"Downloads" = "下载";
 "Publish My Planets" = "发布我的行星";
 "Update Following Planets" = "更新关注的行星";
-"Reload Planets" = "重载行星";
+"Reload Planets" = "重新加载行星";
 "Failed to Rebuild Planet" = "重建行星失败";
 "Rebuild Planet" = "重建行星";
 "Import Planet" = "导入行星";
-"Library Location" = "行星库位置";
+"Library Location" = "库位置";
 "Choose Planet Data" = "选择行星数据";
 
 //左侧栏 PlanetSidebarView
-"Smart Feeds" = "智能提要";
-"Today" = "今天";
+"Smart Feeds" = "智能订阅";
+"Today" = "今日";
 "Unread" = "未读";
-"Starred" = "标记";
-"starred" = "标记";
+"Starred" = "加星";
+"starred" = "加星";
 "My Planets" = "我的行星";
 "Following Planets" = "关注的行星";
 "Offline" = "离线";
@@ -35,45 +35,45 @@
 
 //中间文章区
 "articles" = "文章";
-"total" = "总计";
+"total" = "总数";
 "unread" = "未读";
-"fetched today" = "今天获取";
-"Show All" = "显示所有";
+"fetched today" = "今日获取";
+"Show All" = "显示全部";
 "Show Pages" = "显示页面";
-"Show Navigation Items" = "显示导航项目";
+"Show Navigation Items" = "显示导航项";
 "Show Unread" = "显示未读";
 "Show All Starred" = "显示所有加星标的";
-"No Articles" = "没有文章";
-"No Pages" = "没有页数";
-"No Navigation Items" = "无导航项目";
-"No Unread Articles" = "没有未读文章";
-"No Starred Articles" = "没有加星标的文章";
-"No Items with Plan Type" = "没有计划类型的项目";
-"No Items with To Do Type" = "没有包含“待办事项”类型的项目";
-"No Items with Done Type" = "没有已完成类型的项目";
-"No Items with Sparkles Type" = "没有带有闪光类型的物品";
-"No Items with Heart Type" = "没有带有心型的项目";
-"No Items with Question Type" = "没有问题类型的项目";
-"No Items with Paperplane Type" = "没有纸飞机类型的商品";
+"No Articles" = "无文章";
+"No Pages" = "无页面";
+"No Navigation Items" = "无导航项";
+"No Unread Articles" = "无未读文章";
+"No Starred Articles" = "无加星标的文章";
+"No Items with Plan Type" = "无计划类型的项目";
+"No Items with To Do Type" = "无待办类型的项目";
+"No Items with Done Type" = "无完成类型的项目";
+"No Items with Sparkles Type" = "无闪光类型的项目";
+"No Items with Heart Type" = "无心形类型的项目";
+"No Items with Question Type" = "无问题类型的项目";
+"No Items with Paperplane Type" = "无纸飞机类型的项目";
 "Mark as Read" = "标记为已读";
 "Mark as Unread" = "标记为未读";
 "Delete Article" = "删除文章";
-"Remove Star" = "删除标记";
-"Star" = "星";
-"Sparkles" = "闪闪发光";
-"Heart" = "心";
+"Remove Star" = "移除星标";
+"Star" = "加星";
+"Sparkles" = "闪光";
+"Heart" = "心形";
 "Question" = "问题";
 "Paperplane" = "纸飞机";
 "Plan" = "计划";
-"To Do" = "待办事项";
-"Done" = "完成";
+"To Do" = "待办";
+"Done" = "已完成";
 
 "Copy Public Link" = "复制公共链接";
 "Open in Browser" = "在浏览器中打开";
 "Copy Link" = "复制链接";
 "Failed to Create Post" = "创建帖子失败";
 "More Actions" = "更多操作";
-"Displays available actions" = "显示可用的操作";
+"Displays available actions" = "显示可用操作";
 //
 "Publishing" = "发布中";
 "Folder is missing" = "文件夹丢失";
@@ -96,31 +96,31 @@
 "Insert Emoji" = "插入表情符号";
 "Attach Photo" = "附加照片";
 "Attach Video" = "附加视频";
-"Attach Audio" = "附加视频";
+"Attach Audio" = "附加音频";
 "Remove Attachments" = "删除附件";
 "Failed to import planet" = "导入行星失败";
-"Published Folders" = "发布文件夹";
+"Published Folders" = "已发布文件夹";
 "Options" = "选项";
 "Automatically Publish" = "自动发布";
 "Nostalgia" = "怀旧";
-"Published" = "已发表";
+"Published" = "已发布";
 "Date" = "日期";
 "Amount" = "数量";
-"Recipient" = "接受者";
-"Tip with Ethereum" = "以太坊小费";
-"Get ENS Info" = "获取 ENS 信息";
-"Visit Juicebox Project" = "访问 Juicebox 项目";
+"Recipient" = "收件人";
+"Tip with Ethereum" = "用以太坊给小费";
+"Get ENS Info" = "获取ENS信息";
+"Visit Juicebox Project" = "访问Juicebox项目";
 //密钥管理器
 "Key Manager" = "密钥管理器";
 "Sync" = "同步";
 "Sync with Keychain" = "与钥匙串同步";
 "Reload" = "重新加载";
-"Reload Planet Keys" = "重新加载行星钥匙";
+"Reload Planet Keys" = "重新加载行星密钥";
 "Import" = "导入";
 "import" = "导入";
-"Import Planet Key" = "导入行星钥匙";
+"Import Planet Key" = "导入行星密钥";
 "Export" = "导出";
-"Export Planet Key" = "导出行星钥匙";
+"Export Planet Key" = "导出行星密钥";
 "Keystore Status" = "密钥库状态";
 "In Keystore" = "在密钥库中";
 "Not in Keystore" = "不在密钥库中";
@@ -128,9 +128,7 @@
 "In Keychain" = "在钥匙串中";
 "Not in Keychain" = "不在钥匙串中";
 "Key Name" = "密钥名";
-"Key ID" = "密钥 ID";
-
-
+"Key ID" = "密钥ID";
 
 "Time" = "时间";
 "Now" = "现在";
@@ -149,26 +147,26 @@
 "Failed to Publish Folder" = "发布文件夹失败";
 "Failed to Remove Folder" = "删除文件夹失败";
 "Toggle Sidebar" = "切换侧边栏";
-"Backward" = "落后";
-"Forward" = "向前";
+"Backward" = "后退";
+"Forward" = "前进";
 "Home" = "主页";
 "More" = "更多";
 "Toggle Inspector View" = "切换检查器视图";
-"Connected with %@" = "连接于 %@";
+"Connected with %@" = "已连接至%@";
 "Failed to Change Library Location" = "更改库位置失败";
 "Change" = "更改";
 "Reset" = "重置";
 "Public Gateway" = "公共网关";
-"Ethereum Network" = "Ethereum 网络";
+"Ethereum Network" = "以太坊网络";
 "Unknown Chain ID" = "未知链ID";
 "Choose Library Location" = "选择库位置";
 "Choose" = "选择";
-"Existing Planet Library Found" = "新发现现有行星库";
-"Continue & Update" = "继续更新";
-"General" = "一般";
-"Planets" = "行星归档";
+"Existing Planet Library Found" = "发现现有行星库";
+"Continue & Update" = "继续并更新";
+"General" = "常规";
+"Planets" = "行星";
 "Archived My Planet" = "归档我的行星";
-"Archived Following Planet" = "归档以下行星";
+"Archived Following Planet" = "归档我关注的行星";
 "Unarchive" = "取消归档";
 "Enable Public API" = "启用公共API";
 "Require Authentication" = "需要身份验证";
@@ -176,89 +174,89 @@
 "API Server Port" = "API服务器端口";
 "API Server Username" = "API服务器用户名";
 "API Server Passcode" = "API服务器密码";
-"Failed to create planet" = "没能创建行星";
-"Enable custom code inside <head></head>" = "在 <head></head> 内启用自定义代码";
-"Head" = "头部标签";
-"Body Start" = "主体开始";
-"Body End" = "主体结束";
-"Enable custom code after the start of <body>" = "在 <body> 开始后启用自定义代码";
-"Enable custom code before </body>" = "在 </body> 之前启用自定义代码";
+"Failed to create planet" = "创建行星失败";
+"Enable custom code inside <head></head>" = "在<head></head>内启用自定义代码";
+"Head" = "头部";
+"Body Start" = "开头";
+"Body End" = "结尾";
+"Enable custom code after the start of <body>" = "在<body>开始后启用自定义代码";
+"Enable custom code before </body>" = "在</body>前启用自定义代码";
 "Clear" = "清除";
 "Follow" = "关注";
 "New Planet" = "新行星";
 "New Site" = "新网站";
-"Name" = "名字";
+"Name" = "名称";
 "Create" = "创建";
 "Failed to follow planet" = "关注行星失败";
-"This ENS has no contenthash." = "这个ENS没有内容值。";
+"This ENS has no contenthash." = "该 ENS 没有内容哈希。";
 "Unable to follow planet" = "无法关注行星";
-"Following %@" = "关注 %@";
-"Failed to send article:" = "文章发送失败：";
+"Following %@" = "关注%@";
+"Failed to send article:" = "发送文章失败：";
 "Failed to delete article:" = "删除文章失败：";
 "Save Draft" = "保存草稿";
 "Delete Draft" = "删除草稿";
-"Failed to Access to Folder" = "访问文件夹失败";
+"Failed to Access to Folder" = "无法访问文件夹";
 "Choose attachments to publish" = "选择要发布的附件";
 "Choose Folder to Publish" = "选择要发布的文件夹";
 "Failed to Add Folder" = "添加文件夹失败";
 "Selected folder has already been added." = "所选文件夹已添加。";
 "Failed to Export Folder Key" = "导出文件夹密钥失败";
 "Folder key doesn't exist, please make sure this folder has been successfully published." = "文件夹密钥不存在，请确保此文件夹已成功发布。";
-"Choose Directory to Save Folder Key" = "选择“保存文件夹密钥的目录”";
+"Choose Directory to Save Folder Key" = "选择保存文件夹密钥的目录";
 "Choose location to save planet key" = "选择保存行星密钥的位置";
-"Choose key file to import" = "选择导入的密钥文件";
+"Choose key file to import" = "选择要导入的密钥文件";
 "Failed to Import Planet Key" = "导入行星密钥失败";
 "Failed to Export Planet Key" = "导出行星密钥失败";
-"Failed to Sync Planet Key to Keychain" = "同步行星钥匙到钥匙串失败";
+"Failed to Sync Planet Key to Keychain" = "同步行星密钥到钥匙串失败";
 "Article Slug Issue" = "文章链接问题";
 "Failed to Export Planet" = "导出行星失败";
-"There is already an exported Planet in the destination." = "目的地已经有一个导出的行星。";
-"We do not recommend override your backup." = "我们不建议覆盖您的备份。";
-"Please choose another destination, or rename your previous backup." = "请选择其他目的地，或重命名您之前的备份。";
-"The slug is already used by" = "该链接已被使用\n「";
-"Please choose a different slug" = "」\n请选择不同的链接";
-"Please try again." = "请再试一次。";
-"Failed to Start AirDrop Service" = "启动空投服务失败";
-"Cover Art" = "封面";
+"There is already an exported Planet in the destination." = "目标位置已存在一个已导出的行星。";
+"We do not recommend overriding your backup." = "我们不建议覆盖您的备份。";
+"Please choose another destination, or rename your previous backup." = "请为备份选择另一个位置，或将之前的备份重命名。";
+"The slug is already used by" = "该链接已被使用：";
+"Please choose a different slug" = "请使用其他链接";
+"Please try again." = "请重试。";
+"Failed to Start AirDrop Service" = "启动AirDrop服务失败";
+"Cover Art" = "封面艺术";
 "Language" = "语言";
-"Podcast contains explicit contents" = "播客包含明确的内容";
-"Categories" = "类别";
+"Podcast contains explicit contents" = "播客包含具体内容";
+"Categories" = "分类";
 "more" = "更多";
 
 //错误信息
-"Persistence Error"  =  "持久性错误";
-"Network Error"  =  "网络错误";
-"IPFS Error"  =  "IPFS错误";
-"Ethereum Error"  =  "以太坊错误";
-"Planet Feed Error"  =  "行星馈送错误";
-"Planet Exists Error"  =  "行星存在错误";
-"Planet Not Exists Error"  =  "行星不存在错误";
-"Missing Template Error"  =  "缺少模板错误";
-"Missing Planet Key Error"  =  "缺少行星关键错误";
-"Avatar Error"  =  "头像错误";
-"Podcast Cover Art Error"  =  "播客封面艺术错误";
-"Import Planet Error"  =  "导入行星错误";
-"Export Planet Error"  =  "导出行星错误";
-"File Exists Error"  =  "文件存在错误";
-"Follow Local Planet Error"  =  "跟随本地行星错误";
-"Follow Planet Verify Error"  =  "关注行星验证错误";
-"Invalid Planet URL Error"  =  "无效的行星 URL 错误";
-"ENS No Content Hash Error"  =  "ENS 无内容哈希错误";
-"DotBit No DWeb Record Error"  =  "DotBit 无 DWeb 记录错误";
-"DotBit IPNS Resolve Error"  =  "DotBit IPNS 解决错误";
-"Render Markdown Error"  =  "渲染 Markdown 错误";
-"Published Service Folder Unchanged Error"  =  "已发布的服务文件夹未更改错误";
-"Published Service Folder Permission Error"  =  "发布服务文件夹权限错误";
-"Move Publishing Planet Article Error"  =  "移动发布行星文章错误";
-"Wallet Connect V2 Project ID Missing Error"  =  "Wallet Connect V2 项目 ID 缺失错误";
-"Public API Error"  =  "公共API错误";
-"Key Manager Saving Key Error"  =  "密钥管理器保存密钥错误";
-"Key Manager Loading Key Error"  =  "密钥管理器加载密钥错误";
-"Key Manager Deleting Key Error"  =  "密钥管理器删除密钥错误";
-"Key Manager Generating Key Error"  =  "密钥管理器生成密钥错误";
-"Key Manager Importing Key Error"  =  "密钥管理器导入密钥错误";
-"Key Manager Importing Key Exists Error"  =  "密钥管理器导入密钥存在错误";
-"Key Manager Exporting Key Exists Error"  =  "密钥管理器导出密钥存在错误";
+"Persistence Error" = "持久错误";
+"Network Error" = "网络错误";
+"IPFS Error" = "IPFS错误";
+"Ethereum Error" = "以太坊错误";
+"Planet Feed Error" = "行星源错误";
+"Planet Exists Error" = "行星已存在错误";
+"Planet Not Exists Error" = "行星不存在错误";
+"Missing Template Error" = "缺少模板错误";
+"Missing Planet Key Error" = "缺少行星密钥错误";
+"Avatar Error" = "头像错误";
+"Podcast Cover Art Error" = "播客封面艺术错误";
+"Import Planet Error" = "导入行星错误";
+"Export Planet Error" = "导出行星错误";
+"File Exists Error" = "文件已存在错误";
+"Follow Local Planet Error" = "关注本地行星错误";
+"Follow Planet Verify Error" = "关注行星验证错误";
+"Invalid Planet URL Error" = "无效的行星URL错误";
+"ENS No Content Hash Error" = "ENS无内容哈希错误";
+"DotBit No DWeb Record Error" = "DotBit无DWeb记录错误";
+"DotBit IPNS Resolve Error" = "DotBit IPNS解析错误";
+"Render Markdown Error" = "渲染Markdown错误";
+"Published Service Folder Unchanged Error" = "已发布服务文件夹未更改错误";
+"Published Service Folder Permission Error" = "已发布服务文件夹权限错误";
+"Move Publishing Planet Article Error" = "移动发布行星文章错误";
+"Wallet Connect V2 Project ID Missing Error" = "Wallet Connect V2项目ID缺失错误";
+"Public API Error" = "公共API错误";
+"Key Manager Saving Key Error" = "密钥管理器保存密钥错误";
+"Key Manager Loading Key Error" = "密钥管理器加载密钥错误";
+"Key Manager Deleting Key Error" = "密钥管理器删除密钥错误";
+"Key Manager Generating Key Error" = "密钥管理器生成密钥错误";
+"Key Manager Importing Key Error" = "密钥管理器导入密钥错误";
+"Key Manager Importing Key Exists Error" = "密钥管理器导入密钥已存在错误";
+"Key Manager Exporting Key Exists Error" = "密钥管理器导出密钥已存在错误";
 "Internal Error" = "内部错误";
 
 
@@ -266,14 +264,14 @@
 "Add Attachments" = "添加附件";
 "Or drag and drop images here." = "或者在这里拖放图像。";
 "Cancel" = "取消";
-"Post" = "帖子";
-"Please scan the QR code with your wallet app" = "请用钱包应用扫描二维码";
+"Post" = "发布";
+"Please scan the QR code with your wallet app" = "请使用您的钱包应用扫描二维码";
 "Copy URL" = "复制网址";
-"Copied" = "复制";
+"Copied" = "已复制";
 "Disconnect" = "断开连接";
-"OK" = "好的";
+"OK" = "确定";
 "Please select the amount" = "请选择金额";
-"Are you sure you want to disconnect?" = "您确定要断开连接吗?";
+"Are you sure you want to disconnect?" = "您确定要断开连接吗？";
 "Share" = "分享";
 "Delete" = "删除";
 "Edit" = "编辑";
@@ -290,9 +288,8 @@
 "Navigation Weight" = "导航权重";
 "Navigation" = "导航";
 
-
 "Are you sure you want to delete this article?" = "您确定要删除这篇文章吗？";
-"Move Article to" = "将文章移至";
+"Move Article to" = "将文章移动到";
 "Edit Article" = "编辑文章";
 "Settings" = "设置";
 "Template Settings" = "模板设置";
@@ -301,7 +298,7 @@
 "Edit Planet" = "编辑行星";
 "Custom Code" = "自定义代码";
 "Podcast Settings" = "播客设置";
-"Copy IPNS" = "复制IPNS";
+"Copy IPNS" = "复制 IPNS";
 "Show IPNS and CID" = "显示 IPNS 和 CID";
 "Share via AirDrop" = "通过 AirDrop 分享";
 "Archive Planet" = "归档行星";
@@ -309,28 +306,28 @@
 "Delete Planet" = "删除行星";
 
 "Archive" = "归档";
-"Open in WorldWideWeb Server" = "在万维网服务器中打开";
+"Open in WorldWideWeb Server" = "在 WorldWideWeb 服务器中打开";
 "Rebuild" = "重建";
-"Rebuilding" = "重建中";
-"Planet Rebuilt" = "行星重建";
+"Rebuilding" = "正在重建";
+"Planet Rebuilt" = "行星已重建";
 "new articles" = "新文章";
-"items done" = "完成的项目";
-"Check with Pinnable" = "检查可固定";
+"items done" = "已完成项目";
+"Check with Pinnable" = "在 Pinnable 上检查";
 "Export Planet" = "导出行星";
 "Publish Planet" = "发布行星";
-"Domain" = "域";
+"Domain" = "域名";
 "API Server" = "API 服务器";
 "Analytics" = "分析";
 "Social" = "社交";
 "API Endpoint" = "API 端点";
-"Pin Status" = "Pin 状态";
-"Pin Name" = "Pin 名字";
+"Pin Status" = "固定状态";
+"Pin Name" = "固定名称";
 "API Token" = "API 令牌";
-"Request ID" = "请求ID";
-"Site Name" = "网站名";
+"Request ID" = "请求 ID";
+"Site Name" = "站点名称";
 "About" = "关于";
 
-"Author Name" = "作者";
+"Author Name" = "作者名称";
 "Template" = "模板";
 "Basic Info" = "基本信息";
 "Pinning" = "固定";
@@ -338,28 +335,26 @@
 "Project ID (Goerli)" = "项目 ID（Goerli）";
 "Integrations" = "集成";
 "Enable Pinnable for Pinning" = "启用可固定以进行固定";
-"Enable Filebase for Pinning" = "启用文件库进行固定";
+"Enable Filebase for Pinning" = "启用 Filebase 进行固定";
 "Enable Juicebox Integration" = "启用 Juicebox 集成";
-"Enable Plausible for Traffic Analytics" = "启用Plausible的流量分析";
+"Enable Plausible for Traffic Analytics" = "启用 Plausible 进行流量分析";
 "Enable dWebServices.xyz for IPNS" = "为 IPNS 启用 dWebServices.xyz";
 
-"Visitors Today" = "今日访客";
+"Visitors Today" = "今日访客数";
 "Pageviews Today" = "今日浏览量";
-"Loading Analytics Data" = "加载分析数据";
-"Open Dashboard" = "打开仪表板";
-
-
+"Loading Analytics Data" = "正在加载分析数据";
+"Open Dashboard" = "打开仪表盘";
 
 "Include in Site Navigation" = "包含在站点导航中";
 
-"Updated" = "更新于 ";
+"Updated" = "更新于";
 "Failed to locate downloaded file." = "无法找到下载的文件。";
-"Please try to redownload it from article." = "请尝试从文章中重新下载。";
-"Dismiss" = "离开";
+"Please try to redownload it from the article." = "请尝试从文章中重新下载。";
+"Dismiss" = "忽略";
 "Open" = "打开";
 "Show in Finder" = "在 Finder 中显示";
 "Copy Address" = "复制地址";
-"Remove from List" = "从列表中删除";
+"Remove from List" = "从列表中移除";
 "View on Etherscan" = "在 Etherscan 上查看";
 "Quit" = "退出";
 "What's New in Planet" = "行星的新功能";
@@ -371,47 +366,46 @@
 "Export and import websites between Macs" = "在 Mac 之间导出和导入网站";
 
 "Continue" = "继续";
-
+"Advanced" = "进阶";
 "Mark All as Read" = "标记为已读";
 "Unfollow" = "取消关注";
 
-"Do you want to save your changes as a draft?" = "您想将更改保存为草稿吗？";
+"Do you want to save your changes as a draft?" = "您是否要将更改保存为草稿？";
 
 "Are you sure you want to unfollow this planet?" = "您确定要取消关注这个行星吗？";
 
-"Here are your archived Planets. Archived planets are not auto published or updated. You can unarchive them from here." = "这是您归档的行星。 归档的行星不会自动发布或更新。 您可以从此处取消归档它们。";
+"Here are your archived Planets. Archived planets are not auto published or updated. You can unarchive them from here." = "这是您归档的行星。归档的行星不会自动发布或更新。您可以从此处取消归档它们。";
 
+"Are you sure you want to delete %@? This action cannot be undone." = "您确定要删除 %@ 吗？此操作无法撤消。";
 
-"Are you sure you want to delete %@? This action cannot be undone." = "你确定你要删除 %@？ 此操作无法撤消。";
+"Are you sure you want to delete this post?\n\n%@?\n\nThis action cannot be undone." = "您确定要删除此帖子吗？\n\n%@？\n\n此操作无法撤消。";
 
-"Are you sure you want to delete this post?\n\n%@?\n\nThis action cannot be undone." = "您确定要删除此帖子吗？\n\n%@?\in\此操作无法撤消。";
+"Would you like to use new library location at" = "您是否要使用新的库位置";
 
-"Would you like to use new library location at" = "是否要使用新的行星库位置";
+"current database including following planets will be replaced with contents at this location" = "当前数据库，包括以下行星，将被此位置的内容替换";
 
-"current database including following planets will be replaced with contents at this location" = "当前数据库（包括以下行星）将替换为该位置的内容";
+"When you tip a creator, transactions will be sent to the selected Ethereum network." = "当您给创作者打赏时，交易将发送到选定的以太坊网络。";
 
-"When you tip a creator, transactions will be sent to the selected Ethereum network." = "当您向创建者提供小费时，交易将被发送到选定的以太坊网络。";
+"Are you sure you want to archive this planet? Archived planets will not be auto updated. You can later unarchive it from settings." = "您确定要归档这个行星吗？归档的行星不会自动更新。您可以稍后从设置中取消归档。";
 
-"Are you sure you want to archive this planet? Archived planets will not be auto updated. You can later unarchive it from settings." = "您确定要归档这个行星吗？ 归档的行星不会自动更新。 您稍后可以从设置中取消归档。";
-
-"Planet lets you build and host your website on your Mac without requiring a centralized service." = "行星允许您在 Mac 上构建和托管网站，而无需集中服务。";
+"Planet lets you build and host your website on your Mac without requiring a centralized service." = "行星让您能够在Mac上构建和托管网站，无需依赖中心化服务。";
 
 "You can also use Planet to follow the content creators you like." = "您还可以使用行星来关注您喜欢的内容创作者。";
 
-"The big difference is that there is no middle layer between you and the content creators you follow." = "最大的区别在于，您和您关注的内容创建者之间没有中间层。";
+"The big difference is that there is no middle layer between you and the content creators you follow." = "最大的区别是，在您和您关注的内容创作者之间没有中间层。";
 
-"You will receive the latest updates in a peer-to-peer manner." = "您将以点对点的方式收到最新的更新。";
+"You will receive the latest updates in a peer-to-peer manner." = "您将以点对点方式接收到最新的更新。";
 
-"The slug is the part of the URL that identifies the article. It should be unique and contain only lowercased letters, numbers, and hyphens." = "slug 是 URL 中标识文章的部分。 它应该是唯一的，并且仅包含小写字母、数字和连字符。";
+"The slug is the part of the URL that identifies the article. It should be unique and contain only lowercased letters, numbers, and hyphens." = "slug 是 URL 中标识文章的部分。它应该是唯一的，并且只包含小写字母、数字和连字符。";
 
-"If you want this article to redirect to an external link, enter the URL here." = "如果您希望本文重定向到外部链接，请在此处输入 URL。";
+"If you want this article to redirect to an external link, enter the URL here." = "如果您希望此文章重定向到外部链接，请在此处输入 URL。";
 
-"This domain will be used in places that need a domain prefix, like for RSS or Podcast feeds." = "这个域将用于需要域前缀的地方，比如RSS或播客提要。";
+"This domain will be used in places that need a domain prefix, like for RSS or Podcast feeds." = "此域将用于需要域前缀的地方，例如 RSS 或播客提要。";
 
-"Are you sure you want to archive this planet? Archived planets will not be auto published. You can later unarchive it from settings." = "你确定要归档这个行星吗?归档的行星不会自动发布。稍后可以将其从设置中解归档。";
+"Are you sure you want to archive this planet? Archived planets will not be auto published. You can later unarchive it from settings." = "您确定要归档这个行星吗？归档的行星不会自动发布。您稍后可以从设置中取消归档。";
 
-"Please input an integer for sorting, entries with smaller numbers will be ranked first." = "请输入一个整数进行排序，数字较小的条目将排在前面。";
+"Please input an integer for sorting, entries with smaller numbers will be ranked first." = "请输入一个整数用于排序，具有较小数值的条目将排在前面。";
 
-"Articles of the Page type are not listed on the blog index page, nor are they included in the RSS feed." = "页面类型的文章不会在博客索引页上列出，也不包含在 RSS 源中。";
+"Articles of the Page type are not listed on the blog index page, nor are they included in the RSS feed." = "页面类型的文章不会显示在博客索引页上，也不会包含在 RSS 源中。";
 
-"Are you sure you want to delete this article? This action will remove it from your feed. However, if the article is still available on the source, it will reappear in your feed the next time you refresh it." = "您确定要删除这篇文章吗?此操作将从提要中删除它。但是，如果该文章在源上仍然可用，则下次刷新它时它将重新出现在您的提要中。";
+"Are you sure you want to delete this article? This action will remove it from your feed. However, if the article is still available on the source, it will reappear in your feed the next time you refresh it." = "您确定要删除此文章吗？此操作将从您的提要中删除它。但是，如果该文章仍然在源上可用，它将在下次刷新时重新出现在您的提要中。";

@@ -96,15 +96,15 @@ struct FollowPlanetView: View {
             } catch PlanetError.ENSNoContentHashError {
                 if !isCancelled {
                     PlanetStore.shared.alert(
-                        title: "Unable to follow planet",
-                        message: "This ENS has no contenthash."
+                        title: "Unable to follow planet".localized,
+                        message: "This ENS has no contenthash.".localized
                     )
                 }
             } catch {
                 if !isCancelled {
                     PlanetStore.shared.alert(
-                        title: "Failed to follow planet",
-                        message: "\(error)"
+                        title: "Failed to follow planet".localized,
+                        message: "\(error)".localized
                     )
                 }
             }
