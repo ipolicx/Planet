@@ -107,6 +107,9 @@
 "Date" = "日期";
 "Amount" = "数量";
 "Recipient" = "接受者";
+"Tip with Ethereum" = "以太坊小费";
+"Get ENS Info" = "获取 ENS 信息";
+"Visit Juicebox Project" = "访问 Juicebox 项目";
 //密钥管理器
 "Key Manager" = "密钥管理器";
 "Sync" = "同步";
@@ -309,6 +312,8 @@
 "Open in WorldWideWeb Server" = "在万维网服务器中打开";
 "Rebuild" = "重建";
 "Rebuilding" = "重建中";
+"Planet Rebuilt" = "行星重建";
+"new articles" = "新文章";
 "items done" = "完成的项目";
 "Check with Pinnable" = "检查可固定";
 "Export Planet" = "导出行星";

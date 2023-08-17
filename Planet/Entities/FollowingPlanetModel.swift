@@ -1624,7 +1624,7 @@ class FollowingPlanetModel: Equatable, Hashable, Identifiable, ObservableObject,
         }
         else {
             requestID = id
-            content.body = "\(newArticles.count) new articles"
+            content.body = "\(newArticles.count) \("new articles".localized)"
             content.categoryIdentifier = "PlanetShowPlanetNotification"
         }
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)

@@ -1751,7 +1751,7 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
 
     func sendNotificationForRebuild() async {
         let notification = UNMutableNotificationContent()
-        notification.title = "Planet Rebuilt"
+        notification.title = "Planet Rebuilt".localized
         notification.subtitle = self.name
         notification.interruptionLevel = .active
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)

@@ -105,7 +105,7 @@ struct WalletAccountView: View {
                             NSWorkspace.shared.open(url)
                         }
                     }
-                }.width(100)
+                }
                 TableColumn("Amount", value: \.amount) { t in
                     HStack {
                         Spacer()
@@ -115,7 +115,7 @@ struct WalletAccountView: View {
                             NSWorkspace.shared.open(url)
                         }
                     }
-                }.width(60)
+                }
                 TableColumn("Recipient", value: \.to) { t in
                     HStack {
                         t.recipientView()
