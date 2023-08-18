@@ -94,7 +94,7 @@
 "Insert Emoji" = "插入表情符号";
 "Attach Photo" = "附加照片";
 "Attach Video" = "附加视频";
-"Attach Audio" = "附加视频";
+"Attach Audio" = "附加音频";
 "Remove Attachments" = "删除附件";
 "Failed to import planet" = "导入网站失败";
 "Published Folders" = "发布文件夹";
@@ -104,7 +104,10 @@
 "Published" = "已发表";
 "Date" = "日期";
 "Amount" = "数量";
-"Recipient" = "接受者";
+"Recipient" = "收件人";
+"Tip with Ethereum" = "用以太坊给小费";
+"Get ENS Info" = "获取ENS信息";
+"Visit Juicebox Project" = "访问Juicebox项目";
 // 密钥管理器 - Key Manager
 "Key Manager" = "密钥管理器";
 "Sync" = "同步";
@@ -141,8 +144,8 @@
 "Failed to Publish Folder" = "发布文件夹失败";
 "Failed to Remove Folder" = "删除文件夹失败";
 "Toggle Sidebar" = "切换侧边栏";
-"Backward" = "落后";
-"Forward" = "向前";
+"Backward" = "后退";
+"Forward" = "前进";
 "Home" = "主页";
 "More" = "更多";
 "Toggle Inspector View" = "切换检查器视图";
@@ -259,7 +262,7 @@
 "Or drag and drop images here." = "或者在这里拖放图像。";
 "Cancel" = "取消";
 "Post" = "帖子";
-"Please scan the QR code with your wallet app" = "请用钱包应用扫描二维码";
+"Please scan the QR code with your wallet app" = "请使用您的钱包应用扫描二维码";
 "Copy URL" = "复制网址";
 "Copied" = "复制";
 "Disconnect" = "断开连接";
@@ -359,7 +362,7 @@
 "Export and import websites between Macs" = "在 Mac 之间导出和导入网站";
 
 "Continue" = "继续";
-
+"Advanced" = "进阶";
 "Mark All as Read" = "标记为已读";
 "Unfollow" = "取消关注";
 

@@ -18,10 +18,10 @@ struct OnboardingView: View {
                         .font(.largeTitle)
                     Text(
                         """
-                        Planet lets you build and host your website on your Mac without requiring a centralized service. \
-                        You can also use Planet to follow the content creators you like. \
-                        The big difference is that there is no middle layer between you and the content creators you follow. \
-                        You will receive the latest updates in a peer-to-peer manner.
+                        \("Planet lets you build and host your website on your Mac without requiring a centralized service.".localized) \
+                        \("You can also use Planet to follow the content creators you like.".localized) \
+                        \("The big difference is that there is no middle layer between you and the content creators you follow.".localized) \
+                        \("You will receive the latest updates in a peer-to-peer manner.".localized)
                         """)
                         .lineLimit(4)
                         .fixedSize(horizontal: false, vertical: true)

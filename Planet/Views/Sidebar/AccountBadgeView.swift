@@ -157,6 +157,11 @@ struct AccountBadgeView: View {
                                 avatarImage = image
                             }
                         }
+                    } else {
+                        //TODO: No ENS avatar, return to wallet App icon?
+                        DispatchQueue.main.async {
+                            avatarImage = NSImage(named: WalletManager.shared.getWalletAppImageName()!)
+                        }
                     }
                 }
             }

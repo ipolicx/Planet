@@ -1168,7 +1168,8 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
     }
 
     func copyTemplateSettings() throws {
-        guard let template = template else {
+        //TODO: Value 'template' was defined but never used; consider replacing with boolean test
+        guard template != nil else {
             throw PlanetError.MissingTemplateError
         }
         if FileManager.default.fileExists(atPath: publicTemplateSettingsPath.path) {
@@ -1683,11 +1684,12 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
 
     func rebuild() async throws {
         let started = Date()
+        //TODO: When the local template is lost, the reconstruction will be stuck on the progress bar, and the judgment condition is pre-determined to avoid such problems
+        try self.copyTemplateAssets()
         Task { @MainActor in
             PlanetStore.shared.isRebuilding = true
             PlanetStore.shared.rebuildTasks = self.articles.count
         }
-        try self.copyTemplateAssets()
         // according to benchmarks, using parallel processing would take half the time to rebuild
         // heaviest task is generating thumbnails
         // try self.articles.forEach { try $0.savePublic() }
