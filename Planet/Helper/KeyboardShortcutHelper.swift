@@ -205,7 +205,7 @@ class KeyboardShortcutHelper: ObservableObject {
                         } catch {
                             Task { @MainActor in
                                 PlanetStore.shared.isShowingAlert = true
-                                PlanetStore.shared.alertTitle = "Failed to Rebuild Planet"
+                                PlanetStore.shared.alertTitle = "Failed to Rebuild Planet".localized
                                 PlanetStore.shared.alertMessage = error.localizedDescription
                             }
                         }

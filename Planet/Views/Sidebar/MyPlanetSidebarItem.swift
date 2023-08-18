@@ -303,25 +303,24 @@ struct MyPlanetSidebarItem: View {
                     Text("Open in WorldWideWeb Server")
                 }
             }
-
+            //TODO: 'catch' block is unreachable because no errors are thrown in 'do' block
             Button {
-                do {
-                    Task(priority: .background) {
+                Task {
+                    do {
                         try await planet.rebuild()
-                    }
-                }
-                catch {
-                    Task { @MainActor in
-                        self.planetStore.isShowingAlert = true
-                        self.planetStore.alertTitle = "Failed to Rebuild Planet"
-                        self.planetStore.alertMessage = error.localizedDescription
+                    } catch {
+                        DispatchQueue.main.async {
+                            self.planetStore.isShowingAlert = true
+                            self.planetStore.alertTitle = "Failed to Rebuild Planet".localized
+                            self.planetStore.alertMessage = error.localizedDescription
+                        }
                     }
                 }
             } label: {
                 Text("Rebuild")
             }
             .keyboardShortcut("r", modifiers: [.command])
-
+            
             if let enabled = planet.pinnableEnabled, enabled {
                 Button {
                     Task(priority: .background) {
