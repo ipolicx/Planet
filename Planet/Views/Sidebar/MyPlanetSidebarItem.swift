@@ -211,11 +211,11 @@ struct MyPlanetSidebarItem: View {
                 }
                 catch PlanetError.FileExistsError {
                     PlanetStore.shared.alert(
-                        title: "Failed to Export Planet",
+                        title: "Failed to Export Planet".localized,
                         message: """
-                            There is already an exported Planet in the destination. \
-                            We do not recommend override your backup. \
-                            Please choose another destination, or rename your previous backup.
+                            \("There is already an exported Planet in the destination.".localized) \
+                            \("We do not recommend override your backup.".localized) \
+                            \("Please choose another destination, or rename your previous backup.".localized)
                             """
                     )
                     return
@@ -224,7 +224,7 @@ struct MyPlanetSidebarItem: View {
                     // use general alert
                 }
             }
-            PlanetStore.shared.alert(title: "Failed to Export Planet", message: "Please try again.")
+            PlanetStore.shared.alert(title: "Failed to Export Planet".localized, message: "Please try again.".localized)
         }
     }
 

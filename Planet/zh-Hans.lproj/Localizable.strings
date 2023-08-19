@@ -211,7 +211,7 @@
 "Article Slug Issue" = "文章链接问题";
 "Failed to Export Planet" = "导出行星失败";
 "There is already an exported Planet in the destination." = "目标位置已存在一个已导出的行星。";
-"We do not recommend overriding your backup." = "我们不建议覆盖您的备份。";
+"We do not recommend override your backup." = "我们不建议覆盖您的备份。";
 "Please choose another destination, or rename your previous backup." = "请为备份选择另一个位置，或将之前的备份重命名。";
 "The slug is already used by" = "该链接已被使用：";
 "Please choose a different slug" = "请使用其他链接";
