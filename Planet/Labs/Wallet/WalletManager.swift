@@ -128,6 +128,9 @@ class WalletManager: NSObject {
             if walletInfo.peerMeta.name.contains("Rainbow") {
                 return "WalletAppIconRainbow"
             }
+            if walletInfo.peerMeta.name.contains("imToken") {
+                return "WalletAppIconimToken"
+            }
         }
         return nil
     }

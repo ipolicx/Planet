@@ -396,6 +396,7 @@
 		BBAE651B28987A31007E1818 /* HTMLEntities in Frameworks */ = {isa = PBXBuildFile; productRef = BBAE651A28987A31007E1818 /* HTMLEntities */; };
 		BBC831AB2836239300CE1F67 /* PlanetSiteTemplates in Frameworks */ = {isa = PBXBuildFile; productRef = BBC831AA2836239300CE1F67 /* PlanetSiteTemplates */; };
 		BBFE51EC27F3AABC0055A51A /* ENSKit in Frameworks */ = {isa = PBXBuildFile; productRef = BBFE51EB27F3AABC0055A51A /* ENSKit */; };
+		E8AD573B2A9357ED0066D875 /* LocalizedUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD573A2A9357ED0066D875 /* LocalizedUtils.swift */; };
 		E8B4FE3D2A8D144E00C01E94 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8B4FE3F2A8D144E00C01E94 /* Localizable.strings */; };
 		E8B4FE422A8D146100C01E94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8B4FE442A8D146100C01E94 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -638,6 +639,7 @@
 		BB8ADF83282580130024DEE2 /* Planet v6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Planet v6.xcdatamodel"; sourceTree = "<group>"; };
 		BBC60A1A2803931C007A42D0 /* Planet v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Planet v5.xcdatamodel"; sourceTree = "<group>"; };
 		BBC831AC2837075600CE1F67 /* Planet v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Planet v7.xcdatamodel"; sourceTree = "<group>"; };
+		E8AD573A2A9357ED0066D875 /* LocalizedUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedUtils.swift; sourceTree = "<group>"; };
 		E8B4FE3E2A8D144E00C01E94 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E8B4FE432A8D146100C01E94 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -859,6 +861,7 @@
 				7211404DFC1B4D23F84EA279 /* PlanetError.swift */,
 				6ACF1666292570AF00AE318B /* PlanetUI.swift */,
 				2AB6A93A29703757007186A7 /* PlanetAPI.swift */,
+				E8AD573A2A9357ED0066D875 /* LocalizedUtils.swift */,
 				72114FF395DAE2370157978E /* Entities */,
 				2A4164D529E6475E009BFC24 /* Quick Share */,
 				6A1DA07A28B4273C00C6B5A9 /* Labs */,
@@ -1273,6 +1276,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AC4995427BB6E7600F1C2D1 /* Build configuration list for PBXNativeTarget "Planet" */;
 			buildPhases = (
+				E8AD57392A9354820066D875 /* ShellScript */,
 				2AC4994127BB6E7500F1C2D1 /* Sources */,
 				2AC4994227BB6E7500F1C2D1 /* Frameworks */,
 				2AC4994327BB6E7500F1C2D1 /* Resources */,
@@ -1422,6 +1426,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E8AD57392A9354820066D875 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\n# Localizable.strings文件路径\nlocalizableFile=\"${SRCROOT}/${PROJECT_NAME}/zh-Hans.lproj/Localizable.strings\"\n\n# 生成的swift文件路径（根据个人习惯修改）\nlocalizedFile=\"${SRCROOT}/${PROJECT_NAME}/LocalizedUtils.swift\"\n\n# 清空目标文件\n> \"${localizedFile}\"\n\n# 先将localized作为计算属性输出到目标文件\ncat <<EOF >\"${localizedFile}\"\n/*\n  Localizable.strings\n  Planet\n  \n*/\n\nimport Foundation\n\nextension String {\n    var localized: String { return NSLocalizedString(self, comment: self) }\n}\nEOF\n\n# 遍历 Localizable.strings 中的每一行\nwhile IFS= read -r line || [[ -n \"$line\" ]]; do\n  # 过滤非键值对行\n  if ! [[ $line =~ ^\\\".* ]]; then\n    continue\n  fi\n\n  # 提取 key 和 value\n  key=$(echo \"$line\" | awk -F \"\\\"\" '{ print $2 }')\n  value=$(echo \"$line\" | awk -F \"\\\"\" '{ print $4 }')\n\n  # 转换 key 为合法的常量名\n  constName=\"localized_${key// /_}\"\n  \n  # 过滤包含非字母、数字和下划线的常量名\n  if [[ $constName =~ [^a-zA-Z0-9_] ]]; then\n    continue\n  fi\n  \n  # 将文本转换为 Swift 格式的常量，并追加到目标文件\n  echo \"/** $key  $value */\" >>\"${localizedFile}\"\n  echo \"var $constName: String { return \\\"$value\\\".localized }\" >>\"${localizedFile}\"\ndone <\"$localizableFile\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2ABD1CBD2A1616DA0082D7EA /* Sources */ = {
@@ -1652,6 +1676,7 @@
 				721148F88BE8ABCC52FEB501 /* IPFSDaemon.swift in Sources */,
 				7211431A5867D4CF2960EC39 /* IPFSCommand.swift in Sources */,
 				7211453BC07C2E4A588D1618 /* URLUtils.swift in Sources */,
+				E8AD573B2A9357ED0066D875 /* LocalizedUtils.swift in Sources */,
 				6A900193296C9F3800BC088E /* MyArticleSettingsView.swift in Sources */,
 				72114A84BE7EC3DA2AAF14F5 /* Planet.swift in Sources */,
 				6A52FAEC2A889577000E85F0 /* BackupArticleModel.swift in Sources */,
@@ -1948,9 +1973,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Planet/Planet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Planet/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = EGBKD9877K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1978,9 +2006,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Planet/Planet.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Planet/Preview Content\"";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = EGBKD9877K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1995,6 +2025,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(ORGANIZATION_IDENTIFIER_PREFIX).Planet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Developer ID Profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
