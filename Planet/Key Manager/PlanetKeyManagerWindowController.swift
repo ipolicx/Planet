@@ -114,7 +114,7 @@ class PlanetKeyManagerWindowController: NSWindowController {
                     try importForSelectedKeyItem()
                 } catch {
                     let alert = NSAlert()
-                    alert.messageText = "Failed to Import Planet Key"
+                    alert.messageText = "Failed to Import Planet Key".localized
                     alert.informativeText = error.localizedDescription
                     alert.addButton(withTitle: "Cancel")
                     let _ = alert.runModal()

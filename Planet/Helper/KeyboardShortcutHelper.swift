@@ -254,7 +254,7 @@ class KeyboardShortcutHelper: ObservableObject {
                 PlanetStore.shared.myPlanets.insert(planet, at: 0)
                 PlanetStore.shared.selectedView = .myPlanet(planet)
             } catch {
-                PlanetStore.shared.alert(title: "Failed to import planet")
+                PlanetStore.shared.alert(title: "Failed to import planet".localized)
             }
         }
     }

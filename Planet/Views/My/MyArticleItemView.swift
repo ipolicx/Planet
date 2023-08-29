@@ -189,11 +189,11 @@ struct MyArticleItemView: View {
                         catch {
                             debugPrint("failed to move article: \(error)")
                             PlanetStore.shared.isShowingAlert = true
-                            PlanetStore.shared.alertTitle = "Failed to Move Article"
+                            PlanetStore.shared.alertTitle = "Failed to Move Article".localized
                             switch error {
                             case PlanetError.MovePublishingPlanetArticleError:
                                 PlanetStore.shared.alertMessage =
-                                    "Please wait for the planet publishing completed then try again."
+                                "Please wait for the planet publishing completed then try again.".localized
                             default:
                                 PlanetStore.shared.alertMessage = error.localizedDescription
                             }
