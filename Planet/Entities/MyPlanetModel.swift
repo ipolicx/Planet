@@ -81,6 +81,8 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
 
     var tags: [String: String]? = [:]
 
+    var aggregation: [String]? = nil
+
     static func myPlanetsPath() -> URL {
         let url = URLUtils.repoPath().appendingPathComponent("My", isDirectory: true)
         try! FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
@@ -363,6 +365,7 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
         hasher.combine(articles)
 
         hasher.combine(tags)
+        hasher.combine(aggregation)
     }
 
     static func == (lhs: MyPlanetModel, rhs: MyPlanetModel) -> Bool {
@@ -422,6 +425,7 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
             && lhs.drafts == rhs.drafts
             && lhs.articles == rhs.articles
             && lhs.tags == rhs.tags
+            && lhs.aggregation == rhs.aggregation
     }
 
     enum CodingKeys: String, CodingKey {
@@ -438,7 +442,8 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
             customCodeBodyEndEnabled, customCodeBodyEnd,
             podcastCategories, podcastLanguage, podcastExplicit,
             juiceboxEnabled, juiceboxProjectID, juiceboxProjectIDGoerli,
-            tags
+            tags,
+            aggregation
     }
 
     // `@Published` property wrapper invalidates default decode/encode implementation
@@ -511,6 +516,7 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
             forKey: .juiceboxProjectIDGoerli
         )
         tags = try? container.decodeIfPresent([String: String].self, forKey: .tags) ?? [:]
+        aggregation = try? container.decodeIfPresent([String].self, forKey: .aggregation) ?? []
     }
 
     func encode(to encoder: Encoder) throws {
@@ -563,6 +569,7 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
         try container.encodeIfPresent(juiceboxProjectID, forKey: .juiceboxProjectID)
         try container.encodeIfPresent(juiceboxProjectIDGoerli, forKey: .juiceboxProjectIDGoerli)
         try container.encodeIfPresent(tags, forKey: .tags)
+        try container.encodeIfPresent(aggregation, forKey: .aggregation)
     }
 
     init(
@@ -868,6 +875,9 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
 
         // Restore tags
         planet.tags = backupPlanet.tags
+
+        // Restore aggregation
+        planet.aggregation = backupPlanet.aggregation
 
         // delete existing planet files if exists
         // it is important we validate that the planet does not exist, or we override an existing planet with a stale backup
@@ -1273,7 +1283,6 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
                     string: templateStringRSS,
                     context: context
                 )
-                debugPrint("rssXML: \(rssXML)")
                 if podcastOnly {
                     try rssXML.data(using: .utf8)?.write(to: publicPodcastPath)
                 }
@@ -1326,7 +1335,8 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
         )
         // MARK: - Render index.html and pages
         let itemsPerPage = template.idealItemsPerPage ?? 10
-        if publicPlanet.articles.count > itemsPerPage {
+        let generateIndexPagination = template.generateIndexPagination ?? false
+        if generateIndexPagination == true && publicPlanet.articles.count > itemsPerPage {
             let pages = Int(ceil(Double(publicPlanet.articles.count) / Double(itemsPerPage)))
             debugPrint("Rendering \(pages) pages")
             for i in 1...pages {
@@ -1407,6 +1417,7 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
                     "tag_value": self.tags?[key] ?? key,
                     "current_item_type": "tags",
                     "articles": value,
+                    "page_title" : "\(self.name) - \(self.tags?[key] ?? key)"
                 ]
                 let tagHTML = try template.renderIndex(context: tagContext)
                 let tagPath = publicTagPath(tag: key)
@@ -1597,6 +1608,118 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
         return status
     }
 
+    func aggregate() async {
+        guard let aggregation = aggregation else {
+            return
+        }
+        for site in aggregation {
+            debugPrint("Aggregation: fetching \(site)")
+            if let feedURL = URL(string: "\(IPFSDaemon.shared.gateway)/ipns/\(site)/planet.json") {
+                do {
+                    let (planetJSONData, _) = try await URLSession.shared.data(from: feedURL)
+                    let planet = try JSONDecoder.shared.decode(PublicPlanetModel.self, from: planetJSONData)
+                    debugPrint("Aggregation: fetched \(site) with \(planet.articles.count) articles")
+                    for article in planet.articles {
+                        if !self.articles.contains(where: { $0.id == article.id }) {
+                            debugPrint("Aggregation: adding \(article.id) from \(site)")
+                            let heroImageName: String?
+                            if let heroImage = article.heroImage {
+                                if heroImage.hasPrefix("https://") || heroImage.hasPrefix("http://") {
+                                    // Get the last part of the URL
+                                    if let heroImageURL = URL(string: heroImage) {
+                                        heroImageName = heroImageURL.lastPathComponent
+                                    } else {
+                                        heroImageName = nil
+                                    }
+                                }
+                                else {
+                                    heroImageName = heroImage
+                                }
+                            }
+                            else {
+                                heroImageName = nil
+                            }
+                            // TODO: Extract summary
+                            let newArticle = MyArticleModel(
+                                id: article.id,
+                                link: article.link,
+                                slug: nil,
+                                heroImage: heroImageName,
+                                externalLink: article.externalLink,
+                                title: article.title,
+                                content: article.content,
+                                summary: "",
+                                created: article.created,
+                                starred: nil,
+                                starType: .star,
+                                videoFilename: article.videoFilename,
+                                audioFilename: article.audioFilename,
+                                attachments: article.attachments
+                            )
+                            newArticle.tags = article.tags
+                            newArticle.cids = article.cids
+                            newArticle.planet = self
+                            try newArticle.save()
+                            let publicBasePath = newArticle.publicBasePath
+                            if !FileManager.default.fileExists(atPath: publicBasePath.path) {
+                                try FileManager.default.createDirectory(
+                                    at: publicBasePath,
+                                    withIntermediateDirectories: true
+                                )
+                            }
+                            if let articleAttachments = article.attachments, articleAttachments.count > 0 {
+                                debugPrint("Aggregation: \(article.title) has \(articleAttachments.count) attachments: \(articleAttachments)")
+                                for name in articleAttachments {
+                                    let targetPath = newArticle.publicBasePath.appendingPathComponent(name, isDirectory: false)
+                                    if let attachmentBaseURL = URL(string: "\(IPFSDaemon.shared.gateway)/ipns/\(site)/\(article.id)/") {
+                                        let attachmentURL = attachmentBaseURL.appendingPathComponent(name)
+                                        debugPrint("Aggregation: downloading attachment \(attachmentURL.absoluteString)")
+                                        do {
+                                            let (attachmentData, _) = try await URLSession.shared.data(from: attachmentURL)
+                                            try attachmentData.write(to: targetPath)
+                                        }
+                                        catch {
+                                            debugPrint("Aggregation: failed to fetch \(name) from \(site): \(error)")
+                                        }
+                                    }
+                                }
+                            }
+                            DispatchQueue.main.async {
+                                self.articles.append(newArticle)
+                                self.articles.sorted(by: { $0.created > $1.created })
+                                PlanetStore.shared.refreshSelectedArticles()
+                            }
+                        } else {
+                            debugPrint("Aggregation: Skipping \(article.id), already saved")
+                        }
+                    }
+                }
+                catch {
+                    debugPrint("Aggregation: failed to fetch \(site): \(error)")
+                }
+            }
+        }
+        Task {
+            await withTaskGroup(of: Void.self) { taskGroup in
+                for (i, article) in self.articles.enumerated() {
+                    taskGroup.addTask {
+                        try? article.savePublic()
+                    }
+                    if i >= 2 {
+                        await taskGroup.next()
+                    }
+                }
+            }
+        }
+        self.tags = self.consolidateTags()
+        try? save()
+        try? await savePublic()
+        try? await publish()
+        Task { @MainActor in
+            PlanetStore.shared.refreshSelectedArticles()
+        }
+    }
+
     func exportBackup(to directory: URL, isForAirDropSharing: Bool = false) throws {
         let exportPath = directory.appendingPathComponent(
             "\(name.sanitized()).planet",
@@ -1606,6 +1729,7 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
             throw PlanetError.FileExistsError
         }
 
+        // Remember to add new fields to BackupMyPlanetModel
         let backupPlanet = BackupMyPlanetModel(
             id: id,
             name: name,
@@ -1657,6 +1781,7 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
                     articleType: $0.articleType,
                     link: $0.link,
                     slug: $0.slug,
+                    heroImage: $0.heroImage,
                     externalLink: $0.externalLink,
                     title: $0.title,
                     content: $0.content,
@@ -1673,7 +1798,8 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
                     navigationWeight: $0.navigationWeight
                 )
             },
-            tags: tags
+            tags: tags,
+            aggregation: aggregation
         )
         do {
             try FileManager.default.copyItem(at: publicBasePath, to: exportPath)
@@ -1811,7 +1937,8 @@ class MyPlanetModel: Equatable, Hashable, Identifiable, ObservableObject, Codabl
         Task { @MainActor in
             NotificationCenter.default.post(name: .publishMyPlanet, object: self)
             // Update Planet Lite Window Titles
-            let info = ["title": self.name, "subtitle": self.about]
+            let liteSubtitle = "ipns://\(self.ipns.shortIPNS())"
+            let info = ["title": self.name, "subtitle": liteSubtitle]
             NotificationCenter.default.post(name: .updatePlanetLiteWindowTitles, object: info)
         }
         await sendNotificationForRebuild()

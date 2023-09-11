@@ -155,6 +155,8 @@ struct MyArticleSettingsView: View {
                         }
                         if !title.isEmpty {
                             article.title = title
+                        } else {
+                            article.title = ""
                         }
                         var previousSlug = article.slug
                         var nextSlug = slug
@@ -218,7 +220,6 @@ struct MyArticleSettingsView: View {
                         Text("OK")
                             .frame(width: 50)
                     }
-                    .disabled(title.isEmpty)
                 }
 
             }.padding(PlanetUI.SHEET_PADDING)

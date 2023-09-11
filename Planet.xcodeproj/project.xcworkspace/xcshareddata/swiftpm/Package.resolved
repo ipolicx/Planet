@@ -33,7 +33,7 @@
       "location" : "https://github.com/Planetable/ENSKit",
       "state" : {
         "branch" : "main",
-        "revision" : "5c5af5275f46222e482dd994e1096357de2d29d1"
+        "revision" : "eca3ce453d6bbee71124db36a964e8c81ea889ef"
       }
     },
     {
@@ -60,7 +60,7 @@
       "location" : "https://github.com/airwolfspace/mediaview",
       "state" : {
         "branch" : "main",
-        "revision" : "596d5a0a6cfd0dbd0e28a8e12917ffc0d667d01d"
+        "revision" : "b93f4bc928fdd7d9b98a62c10454c4888cd8067f"
       }
     },
     {
@@ -78,7 +78,7 @@
       "location" : "https://github.com/Planetable/PlanetSiteTemplates.git",
       "state" : {
         "branch" : "main",
-        "revision" : "de0e26c65f8438b9362db8bd4aed2f7dfddb6ec1"
+        "revision" : "cb122a83fe8f1a73362404e6102780573b369b86"
       }
     },
     {
@@ -141,7 +141,7 @@
       "location" : "https://github.com/stencilproject/Stencil.git",
       "state" : {
         "branch" : "master",
-        "revision" : "4f222ac85d673f35df29962fc4c36ccfdaf9da5b"
+        "revision" : "1aeeced65dc9f4652b74887e0e14e666efbda78d"
       }
     },
     {
@@ -222,7 +222,7 @@
       "location" : "https://github.com/WalletConnect/WalletConnectSwiftV2",
       "state" : {
         "branch" : "main",
-        "revision" : "5199a4db3119540f98ab0d21d3c744f833ae2747"
+        "revision" : "bd2e5b65475773863dacb395013d410189ca068b"
       }
     },
     {
@@ -241,6 +241,15 @@
       "state" : {
         "revision" : "f31b8fdc57759c5aa5fc98c70746db5556e73300",
         "version" : "2.2.10"
+      }
+    },
+    {
+      "identity" : "zip",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marmelroy/Zip",
+      "state" : {
+        "revision" : "67fa55813b9e7b3b9acee9c0ae501def28746d76",
+        "version" : "2.1.2"
       }
     }
   ],
