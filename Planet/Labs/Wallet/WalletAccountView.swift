@@ -94,7 +94,7 @@ struct WalletAccountView: View {
             }.padding(10)
 
             Divider()
-
+            //TODO: set to adjustable width
             Table(transactions, sortOrder: $sorting) {
                 TableColumn("Date", value: \.created) { t in
                     HStack {

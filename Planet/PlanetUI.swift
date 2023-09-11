@@ -25,7 +25,7 @@ struct PlanetUI {
     static let WINDOW_CONTENT_WIDTH_MIN: CGFloat = 400
     static let WINDOW_CONTENT_HEIGHT_MIN: CGFloat = 400
 }
-
+//TODO: Will it be more convenient to localize the language in this way?
 extension String {
     var localized: String { return NSLocalizedString(self, comment: self) }
 }

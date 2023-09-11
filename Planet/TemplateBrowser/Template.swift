@@ -28,7 +28,9 @@ class Template: Codable, Identifiable {
     let author: String
     let version: String
     var idealItemsPerPage: Int? = 10
+    var generateIndexPagination: Bool? = false
     var generateTagPages: Bool? = false
+    var generateArchive: Bool? = false
     var buildNumber: Int? = 1
     var generateNFTMetadata: Bool? = false
     var settings: [String: TemplateSetting]? = [:]
@@ -47,6 +49,16 @@ class Template: Codable, Identifiable {
     lazy var blogSimplePath = path
         .appendingPathComponent("templates", isDirectory: true)
         .appendingPathComponent("simple.html", isDirectory: false)
+
+    // tags.html for tag cloud, not all templates have this file
+    lazy var tagsPath = path
+        .appendingPathComponent("templates", isDirectory: true)
+        .appendingPathComponent("tags.html", isDirectory: false)
+
+    // archive.html for a list of all items
+    lazy var archivePath = path
+        .appendingPathComponent("templates", isDirectory: true)
+        .appendingPathComponent("archive.html", isDirectory: false)
 
     lazy var indexPath = path
         .appendingPathComponent("templates", isDirectory: true)
@@ -76,13 +88,23 @@ class Template: Codable, Identifiable {
         return FileManager.default.fileExists(atPath: blogSimplePath.path)
     }
 
+    var hasTagsHTML: Bool {
+        return FileManager.default.fileExists(atPath: tagsPath.path)
+    }
+
+    var hasArchiveHTML: Bool {
+        return FileManager.default.fileExists(atPath: archivePath.path)
+    }
+
     enum CodingKeys: String, CodingKey {
         case name
         case description
         case author
         case version
         case idealItemsPerPage
+        case generateIndexPagination
         case generateTagPages
+        case generateArchive
         case buildNumber
         case generateNFTMetadata
         case settings
@@ -95,7 +117,9 @@ class Template: Codable, Identifiable {
         author = try container.decode(String.self, forKey: .author)
         version = try container.decode(String.self, forKey: .version)
         idealItemsPerPage = try container.decodeIfPresent(Int.self, forKey: .idealItemsPerPage)
+        generateIndexPagination = try container.decodeIfPresent(Bool.self, forKey: .generateIndexPagination)
         generateTagPages = try container.decodeIfPresent(Bool.self, forKey: .generateTagPages)
+        generateArchive = try container.decodeIfPresent(Bool.self, forKey: .generateArchive)
         buildNumber = try container.decodeIfPresent(Int.self, forKey: .buildNumber)
         generateNFTMetadata = try container.decodeIfPresent(Bool.self, forKey: .generateNFTMetadata)
         settings = try container.decodeIfPresent(Dictionary.self, forKey: .settings)
@@ -108,7 +132,9 @@ class Template: Codable, Identifiable {
         try container.encode(author, forKey: .author)
         try container.encode(version, forKey: .version)
         try container.encodeIfPresent(idealItemsPerPage, forKey: .idealItemsPerPage)
+        try container.encodeIfPresent(generateIndexPagination, forKey: .generateIndexPagination)
         try container.encodeIfPresent(generateTagPages, forKey: .generateTagPages)
+        try container.encodeIfPresent(generateArchive, forKey: .generateArchive)
         try container.encodeIfPresent(buildNumber, forKey: .buildNumber)
         try container.encodeIfPresent(generateNFTMetadata, forKey: .generateNFTMetadata)
         try container.encodeIfPresent(settings, forKey: .settings)
@@ -173,6 +199,7 @@ class Template: Codable, Identifiable {
         guard let planet = article.planet else {
             throw PlanetError.RenderMarkdownError
         }
+        let hasPodcast = planet.articles.contains(where: { $0.hasAudioContent() })
         let publicPlanet = PublicPlanetModel(
             id: planet.id, name: planet.name, about: planet.about, ipns: planet.ipns, created: planet.created, updated: planet.updated, articles: [],
             plausibleEnabled: planet.plausibleEnabled ?? false,
@@ -198,6 +225,7 @@ class Template: Codable, Identifiable {
             "planet": publicPlanet,
             "site_navigation": planet.siteNavigation(),
             "has_avatar": planet.hasAvatar(),
+            "has_podcast": hasPodcast,
             "planet_ipns": article.planet.ipns,
             "assets_prefix": "../",
             "article_id": article.id.uuidString,
@@ -256,12 +284,13 @@ class Template: Codable, Identifiable {
             "articles": context["articles"] ?? [],
             "build_timestamp": Int(Date().timeIntervalSince1970),
             "style_css_sha256": styleCSSHash ?? "",
-            "current_item_type": "index",
+            "current_item_type": context["current_item_type"] ?? "index",
             "current_page": context["page"] ?? 1,
             "total_pages": context["pages"] ?? 1,
             "next_page": getNextPage(page: context["page"] as? Int ?? 1, pages: context["pages"] as? Int ?? 1) ?? nil,
             "previous_page": getPreviousPage(page: context["page"] as? Int ?? 1, pages: context["pages"] as? Int ?? 1) ?? nil,
         ]
+        // items in context would override items in contextForRendering
         for (key, value) in context {
             contextForRendering[key] = value
         }
@@ -269,6 +298,62 @@ class Template: Codable, Identifiable {
         let loader = FileSystemLoader(paths: [Path(indexPath.deletingLastPathComponent().path)])
         let environment = Environment(loader: loader, extensions: [StencilExtension.common])
         let stencilTemplateName = indexPath.lastPathComponent
+        return try environment.renderTemplate(name: stencilTemplateName, context: contextForRendering)
+    }
+
+    func renderTags(context: [String: Any]) throws -> String {
+        guard let planet = context["planet"] as? PublicPlanetModel else {
+            throw PlanetError.RenderMarkdownError
+        }
+        guard let myPlanet = context["my_planet"] as? MyPlanetModel else {
+            throw PlanetError.RenderMarkdownError
+        }
+        let pageAboutHTML = CMarkRenderer.renderMarkdownHTML(markdown: planet.about) ?? planet.about
+        var contextForRendering: [String: Any] = [
+            "assets_prefix": "./",
+            "page_title": "\(planet.name) - Tags",
+            "page_description": planet.about,
+            "page_description_html": pageAboutHTML,
+            "articles": context["articles"] ?? [],
+            "build_timestamp": Int(Date().timeIntervalSince1970),
+            "style_css_sha256": styleCSSHash ?? "",
+            "current_item_type": "tags",
+        ]
+        for (key, value) in context {
+            contextForRendering[key] = value
+        }
+        contextForRendering.merge(renderCustomCode(planet: myPlanet, context: contextForRendering)) { (_, new) in new }
+        let loader = FileSystemLoader(paths: [Path(tagsPath.deletingLastPathComponent().path)])
+        let environment = Environment(loader: loader, extensions: [StencilExtension.common])
+        let stencilTemplateName = tagsPath.lastPathComponent
+        return try environment.renderTemplate(name: stencilTemplateName, context: contextForRendering)
+    }
+
+    func renderArchive(context: [String: Any]) throws -> String {
+        guard let planet = context["planet"] as? PublicPlanetModel else {
+            throw PlanetError.RenderMarkdownError
+        }
+        guard let myPlanet = context["my_planet"] as? MyPlanetModel else {
+            throw PlanetError.RenderMarkdownError
+        }
+        let pageAboutHTML = CMarkRenderer.renderMarkdownHTML(markdown: planet.about) ?? planet.about
+        var contextForRendering: [String: Any] = [
+            "assets_prefix": "./",
+            "page_title": "\(planet.name) - Archive",
+            "page_description": planet.about,
+            "page_description_html": pageAboutHTML,
+            "articles": context["articles"] ?? [],
+            "build_timestamp": Int(Date().timeIntervalSince1970),
+            "style_css_sha256": styleCSSHash ?? "",
+            "current_item_type": "archive",
+        ]
+        for (key, value) in context {
+            contextForRendering[key] = value
+        }
+        contextForRendering.merge(renderCustomCode(planet: myPlanet, context: contextForRendering)) { (_, new) in new }
+        let loader = FileSystemLoader(paths: [Path(archivePath.deletingLastPathComponent().path)])
+        let environment = Environment(loader: loader, extensions: [StencilExtension.common])
+        let stencilTemplateName = archivePath.lastPathComponent
         return try environment.renderTemplate(name: stencilTemplateName, context: contextForRendering)
     }
 

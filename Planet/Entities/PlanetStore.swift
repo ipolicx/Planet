@@ -106,6 +106,7 @@ enum PlanetDetailViewType: Hashable, Equatable {
     @Published var isEditingPlanet = false
     @Published var isConfiguringPlanetTemplate = false
     @Published var isConfiguringCPN = false
+    @Published var isConfiguringAggregation = false
     @Published var isShowingMyArticleSettings = false
     @Published var isEditingPlanetCustomCode = false
     @Published var isEditingPlanetPodcastSettings = false
@@ -117,7 +118,9 @@ enum PlanetDetailViewType: Hashable, Equatable {
     @Published var isMigrating = false
     @Published var isRebuilding = false
     @Published var rebuildTasks: Int = 0
-    @Published var isQuickSharing = false   // use in macOS 12 only.
+    @Published var isQuickSharing = false  // use in macOS 12 only.
+
+    @Published var isAggregating: Bool = false  // at any time, only one aggregation task is allowed.
 
     @Published var isShowingWalletConnectV1QRCode: Bool = false
     @Published var isShowingWalletAccount: Bool = false
@@ -135,6 +138,8 @@ enum PlanetDetailViewType: Hashable, Equatable {
     @Published var walletConnectV2Ready: Bool = false
     @Published var walletConnectV2ConnectionURL: String = ""
     @Published var isShowingWalletConnectV2QRCode: Bool = false
+
+    @Published var isShowingIconGallery: Bool = false
 
     @Published var isShowingOnboarding = false
 
@@ -333,6 +338,25 @@ enum PlanetDetailViewType: Hashable, Equatable {
         }
     }
 
+    func aggregate() async {
+        guard isAggregating == false else {
+            return
+        }
+        defer {
+            isAggregating = false
+        }
+        isAggregating = true
+        Task {
+            await withTaskGroup(of: Void.self) { taskGroup in
+                for myPlanet in myPlanets {
+                    taskGroup.addTask {
+                        await myPlanet.aggregate()
+                    }
+                }
+            }
+        }
+    }
+
     func alert(title: String, message: String? = nil) {
         isShowingAlert = true
         alertTitle = title
@@ -343,21 +367,21 @@ enum PlanetDetailViewType: Hashable, Equatable {
         switch selectedView {
         case .today:
             selectedArticleList = getTodayArticles()
-            navigationTitle = "Today".localized
+            navigationTitle = "Today"
             if let articles = selectedArticleList {
-                navigationSubtitle = "\(articles.count) \("fetched today".localized)"
+                navigationSubtitle = "\(articles.count) fetched today"
             }
         case .unread:
             selectedArticleList = getUnreadArticles()
-            navigationTitle = "Unread".localized
+            navigationTitle = "Unread"
             if let articles = selectedArticleList {
-                navigationSubtitle = "\(articles.count) \("unread".localized)"
+                navigationSubtitle = "\(articles.count) unread"
             }
         case .starred:
             selectedArticleList = getStarredArticles()
-            navigationTitle = "Starred".localized
+            navigationTitle = "Starred"
             if let articles = selectedArticleList {
-                navigationSubtitle = "\(articles.count) \("starred".localized)"
+                navigationSubtitle = "\(articles.count) starred"
             }
         case .myPlanet(let planet):
             selectedArticleList = planet.articles
@@ -369,7 +393,7 @@ enum PlanetDetailViewType: Hashable, Equatable {
             navigationSubtitle = planet.navigationSubtitle()
         case .none:
             selectedArticleList = nil
-            navigationTitle = "Planet".localized
+            navigationTitle = "Planet"
             navigationSubtitle = ""
         }
     }

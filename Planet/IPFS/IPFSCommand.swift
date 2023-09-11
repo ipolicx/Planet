@@ -12,7 +12,7 @@ struct IPFSCommand {
         case "x86_64":
             return Bundle.main.url(forResource: "ipfs-amd64-0.15", withExtension: "bin")!
         default:
-            fatalError("Planet is not supported on your operating system.")
+            fatalError("您的操作系统不支持Planet.")
         }
     }()
 
@@ -39,7 +39,7 @@ struct IPFSCommand {
         outputPipe.fileHandleForReading.readabilityHandler = { handler in
             let data = handler.availableData
             guard data.count > 0 else {
-                try? handler.close()
+                handler.closeFile()
                 return
             }
             outputData.append(data)
@@ -51,7 +51,7 @@ struct IPFSCommand {
         errorPipe.fileHandleForReading.readabilityHandler = { handler in
             let data = handler.availableData
             guard data.count > 0 else {
-                try? handler.close()
+                handler.closeFile()
                 return
             }
             errorData.append(data)
@@ -59,6 +59,10 @@ struct IPFSCommand {
         process.standardError = errorPipe
 
         try process.run()
+        
+        process.terminationHandler = { process in
+            // Clean up code here
+        }
         process.waitUntilExit()
 
         outputPipe.fileHandleForReading.readabilityHandler = nil

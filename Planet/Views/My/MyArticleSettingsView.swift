@@ -155,6 +155,8 @@ struct MyArticleSettingsView: View {
                         }
                         if !title.isEmpty {
                             article.title = title
+                        } else {
+                            article.title = ""
                         }
                         var previousSlug = article.slug
                         var nextSlug = slug
@@ -218,7 +220,6 @@ struct MyArticleSettingsView: View {
                         Text("OK")
                             .frame(width: 50)
                     }
-                    .disabled(title.isEmpty)
                 }
 
             }.padding(PlanetUI.SHEET_PADDING)
@@ -387,11 +388,11 @@ extension MyArticleSettingsView {
                             errors = errors + 1
 
                             let alert = NSAlert()
-                            alert.messageText = "Article Slug Issue".localized
+                            alert.messageText = "Article Slug Issue"
                             alert.informativeText =
-                            "\("The slug is already used by".localized) \(article.title) (ID: \(article.id)). \("Please choose a different slug".localized)."
+                                "The slug is already used by \(article.title) (ID: \(article.id)). Please choose a different slug."
                             alert.alertStyle = .informational
-                            alert.addButton(withTitle: "OK".localized)
+                            alert.addButton(withTitle: "OK")
                             alert.runModal()
                             break
                         }

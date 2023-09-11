@@ -40,6 +40,21 @@ extension MyArticleModel {
 
     // MARK: - Save to Public/:planet_id/:article_id/index.html
 
+    // TODO: Fix a potential crash here
+    func obtainCoverImageCID() -> String? {
+        if let coverImageURL = getAttachmentURL(name: "_cover.png") {
+            if FileManager.default.fileExists(atPath: coverImageURL.path) {
+                do {
+                    let coverImageCID = try IPFSDaemon.shared.getFileCIDv0(url: coverImageURL)
+                    return coverImageCID
+                } catch {
+                    return nil
+                }
+            }
+        }
+        return nil
+    }
+
     /// Save the article into UUID/index.html along with its attachments.
     func savePublic() throws {
         let started: Date = Date()
@@ -59,6 +74,7 @@ extension MyArticleModel {
         // Save cover image
         //TODO: Clean up the logic here
         // MARK: Cover Image
+
         let coverImageText = self.getCoverImageText()
 
         saveCoverImage(
@@ -66,14 +82,20 @@ extension MyArticleModel {
             filename: publicCoverImagePath.path,
             imageSize: NSSize(width: 512, height: 512)
         )
-        let coverImageCID: String? = {
-            if let coverImageURL = getAttachmentURL(name: "_cover.png"),
-                let coverImageCID = try? IPFSDaemon.shared.getFileCIDv0(url: coverImageURL)
-            {
-                return coverImageCID
-            }
-            return nil
-        }()
+
+        var needsCoverImageCID = false
+        if let attachments = self.attachments, attachments.count == 0 {
+            needsCoverImageCID = true
+        }
+        if audioFilename != nil {
+            needsCoverImageCID = true
+        }
+
+        var coverImageCID: String? = nil
+        if needsCoverImageCID {
+            coverImageCID = obtainCoverImageCID()
+        }
+
         if let attachments = self.attachments, attachments.count == 0 {
             if self.planet.templateName == "Croptop" {
                 // _cover.png CID is only needed by Croptop now
@@ -86,15 +108,21 @@ extension MyArticleModel {
             if let cids = self.cids, cids.count > 0 {
                 for attachment in self.attachments ?? [] {
                     if cids[attachment] == nil {
+                        debugPrint("CID Update for \(self.title): NEEDED because \(attachment) is missing")
                         return true
                     }
                     if let cid = cids[attachment], cid.hasPrefix("Qm") == false {
+                        debugPrint("CID Update for \(self.title): NEEDED because \(attachment) is not CIDv0")
                         return true
                     }
                 }
                 return false
             }
-            return true
+            if self.attachments?.count ?? 0 > 0 {
+                debugPrint("CID Update for \(self.title): NEEDED because cids is nil")
+                return true
+            }
+            return false
         }()
         if needsToUpdateCIDs {
             debugPrint("CID Update for \(self.title): NEEDED")
@@ -410,6 +438,9 @@ extension MyArticleModel {
     }
 
     func getHeroImage() -> String? {
+        if let heroImage = self.heroImage {
+            return heroImage
+        }
         if self.hasVideoContent() {
             return "_videoThumbnail.png"
         }

@@ -1624,7 +1624,7 @@ class FollowingPlanetModel: Equatable, Hashable, Identifiable, ObservableObject,
         }
         else {
             requestID = id
-            content.body = "\(newArticles.count) \("new articles".localized)"
+            content.body = "\(newArticles.count) new articles"
             content.categoryIdentifier = "PlanetShowPlanetNotification"
         }
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
@@ -1700,7 +1700,7 @@ class FollowingPlanetModel: Equatable, Hashable, Identifiable, ObservableObject,
         }
         else {
             let unread = articles.filter { $0.read == nil }.count
-            return "\(unread) \("unread".localized) · \(articles.count) \("total".localized)"
+            return "\(unread) unread · \(articles.count) total"
         }
     }
 

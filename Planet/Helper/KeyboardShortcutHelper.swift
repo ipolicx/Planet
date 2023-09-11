@@ -69,6 +69,15 @@ class KeyboardShortcutHelper: ObservableObject {
                     Text("Connect Wallet V2")
                 }
             }
+            
+            if PlanetStore.shared.app == .planet {
+                Divider()
+                Button {
+                    PlanetStore.shared.isShowingIconGallery = true
+                } label: {
+                    Text("Icon Gallery")
+                }
+            }
         }
     }
 
@@ -205,7 +214,7 @@ class KeyboardShortcutHelper: ObservableObject {
                         } catch {
                             Task { @MainActor in
                                 PlanetStore.shared.isShowingAlert = true
-                                PlanetStore.shared.alertTitle = "Failed to Rebuild Planet".localized
+                                PlanetStore.shared.alertTitle = "Failed to Rebuild Planet"
                                 PlanetStore.shared.alertMessage = error.localizedDescription
                             }
                         }
@@ -232,8 +241,8 @@ class KeyboardShortcutHelper: ObservableObject {
     
     func importPlanetAction() {
         let panel = NSOpenPanel()
-        panel.message = "Choose Planet Data".localized
-        panel.prompt = "Import".localized
+        panel.message = "Choose Planet Data"
+        panel.prompt = "Import"
         panel.allowsMultipleSelection = false
         let planetDataIdentifier = {
             if let name = Bundle.main.object(forInfoDictionaryKey: "ORGANIZATION_IDENTIFIER_PREFIX") as? String {
